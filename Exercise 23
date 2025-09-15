@@ -1,0 +1,32 @@
+ 
+<!DOCTYPE html> 
+<html> 
+<head><title>Menu Selection</title></head> 
+<body> 
+<form action="DishServlet" method="post"> 
+    <input type="checkbox" name="dish" value="Pizza">Pizza<br> 
+    <input type="checkbox" name="dish" value="Burger">Burger<br> 
+    <input type="checkbox" name="dish" value="Pasta">Pasta<br> 
+    <input type="submit" value="Confirm"> 
+</form> 
+</body> 
+</html> 
+Program (Servlet): 
+import java.io.*; 
+import javax.servlet.*; 
+import javax.servlet.http.*; 
+ 
+public class DishServlet extends HttpServlet { 
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws 
+ServletException, IOException { 
+        response.setContentType("text/html"); 
+        PrintWriter out = response.getWriter(); 
+ 
+        String[] dishes = request.getParameterValues("dish"); 
+        out.println("<h2>Confirmed Dishes:</h2>"); 
+        for (String dish : dishes) { 
+            out.println(dish + "<br>"); 
+        } 
+29  
+    } 
+} 
